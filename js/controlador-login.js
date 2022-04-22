@@ -23,12 +23,9 @@ function validarCampo(){
         }).then((res) =>{
             console.log(res.data);
             for (let i = 0; i<res.data.length; i++) {
-                if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontraseña ) {
-                    window.location  = "index.html"
+                if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontraseña ) { 
                     sessionStorage.setItem('Usuario activo', JSON.stringify(res.data[i]));
-                    break;
-                }else{
-                    alert("No se encuentra ningun administrador con esas credenciales")
+                    window.location  = "index.html"
                     break;
                 }
             }
@@ -36,6 +33,6 @@ function validarCampo(){
             console.log(err);
         })
     }else{
-        alert("es necesario rellenar todos los campos")
+        alert("es necesario rellenar todos los campos ")
     }
 }
