@@ -15,7 +15,26 @@ function validarCampo(){
     }
 
     if(campos.correo && campos.contraseña === true){
-        window.location  = "index.html"
+
+        axios({
+            url: 'http://localhost/Backend-Portal-Delivery/api/administradores.php',
+            method: 'get',
+            responseType: 'json'
+        }).then((res) =>{
+            console.log(res.data);
+            for (let i = 0; i<res.data.length; i++) {
+                if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontraseña ) {
+                    window.location  = "index.html"
+                    sessionStorage.setItem('Usuario activo', JSON.stringify(res.data[i]));
+                    break;
+                }else{
+                    alert("No se encuentra ningun administrador con esas credenciales")
+                    break;
+                }
+            }
+        }).catch(err=>{
+            console.log(err);
+        })
     }else{
         alert("es necesario rellenar todos los campos")
     }
