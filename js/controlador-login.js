@@ -25,7 +25,7 @@ function validarCampo(){
             for (let i = 0; i<res.data.length; i++) {
                 if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontraseña ) { 
                     sessionStorage.setItem('Usuario activo', JSON.stringify(res.data[i]));
-                    window.location  = "index.html"
+                    window.location  = "../html/index.html"
                     break;
                 }
             }
