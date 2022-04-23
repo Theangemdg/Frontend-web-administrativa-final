@@ -66,7 +66,17 @@ function editarCategoria(){
             }).catch(err=>{
                 console.log(err);
             })
-            window.location  = "../html/adminCategories.html"
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Agregado!',
+                text: 'se ha agregado el producto correctamente',
+                showConfirmButton: false,
+                timer: 1500 
+            }).then(res =>{
+                vaciarSessionStorage();
+                window.location  = "../html/adminCategories.html"
+            })
             
         }).catch(err=>{
             console.log(err);

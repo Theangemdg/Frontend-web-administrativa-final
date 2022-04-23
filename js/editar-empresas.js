@@ -73,8 +73,16 @@ function editarEmpresa(){
             }).catch(err=>{
                 console.log(err);
             })
-            vaciarSessionStorage();
-            window.location  = "../html/adminEmpresas.html"
+            Swal.fire({
+                icon: 'success',
+                title: 'Agregado!',
+                text: 'se ha agregado el producto correctamente',
+                showConfirmButton: false,
+                timer: 1500 
+            }).then(res =>{
+                vaciarSessionStorage();
+                window.location  = "../html/adminEmpresas.html"
+            })
             
         }).catch(err=>{
             console.log(err);
