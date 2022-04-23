@@ -30,12 +30,19 @@ function nuevaCategoria(){
                 responseType: 'json',
                 data:categoria
             }).then((res) =>{
-                
                 console.log(res);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Agregada!',
+                    text: 'se ha agregado la categoria correctamente',
+                    showConfirmButton: false,
+                    timer: 1500 
+                })
+                limpiarInputs();
             }).catch(err=>{
                 console.log(err);
             })
-            window.location  = "../html/adminCategories.html"
+            
         }).catch(err=>{
             console.log(err);
         })
@@ -49,3 +56,8 @@ function nuevaCategoria(){
     }
 }
 
+function limpiarInputs(){
+    document.getElementById('nombre').value = "";
+    document.getElementById('descripcion').value = "";
+
+}
