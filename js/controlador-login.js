@@ -1,20 +1,8 @@
 function validarCampo(){
     let txtcorreo = document.getElementById('exampleInputEmail').value;
-    let txtcontraseña = document.getElementById('exampleInputPassword').value;
+    let txtcontrasena = document.getElementById('exampleInputPassword').value;
 
-    console.log(txtcorreo)
-    console.log(txtcontraseña)
-    var campos = {
-        correo: false,
-        contraseña: false
-    }
-
-    if(txtcorreo && txtcontraseña !== " "){
-        campos.correo = true;
-        campos.contraseña = true;
-    }
-
-    if(campos.correo && campos.contraseña === true){
+    if(txtcorreo && txtcontrasena){
 
         axios({
             url: 'http://localhost/Backend-Portal-Delivery/api/administradores.php',
@@ -23,7 +11,7 @@ function validarCampo(){
         }).then((res) =>{
             console.log(res.data);
             for (let i = 0; i<res.data.length; i++) {
-                if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontraseña ) { 
+                if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontrasena ) { 
                     sessionStorage.setItem('Usuario activo', JSON.stringify(res.data[i]));
                     window.location  = "../html/index.html"
                     break;
@@ -33,6 +21,11 @@ function validarCampo(){
             console.log(err);
         })
     }else{
-        alert("es necesario rellenar todos los campos ")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'debes rellenar todos los campos',
+            confirmButtonColor: '#44bae6' 
+        })
     }
 }

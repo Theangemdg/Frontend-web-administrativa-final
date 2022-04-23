@@ -12,7 +12,6 @@ function llenarTablaCategories(){
         method: 'get',
         responseType: 'json'
     }).then((res) =>{
-        console.log(res.data);
         document.getElementById('bodycategories').innerHTML = "";
         for(let i=0; i<res.data.length; i++){
             document.getElementById('bodycategories').innerHTML += 
@@ -22,12 +21,12 @@ function llenarTablaCategories(){
                 <td><img src="${res.data[i].icono}" alt="" height="30px"></td>
                 <td>${res.data[i].nombreCategoria}</td>
                 <td>
-                    <a class="btn btn-info" href="../html/adminEmpresas.html" onclick="categoriaSeleccionada(${i})">
+                    <a class="btn btn-info" href="../html/editarCategoria.html" onclick="categoriaSeleccionada(${i})">
                         <i class="fas fa-pen"></i>
                     </a>
-                    <a class="btn btn-danger" href="#">
+                    <button class="btn btn-danger" onclick="eliminarCategoria(${i})">
                         <i class="fas fa-trash-alt"></i>
-                    </a>
+                    </button>
                 </td>
             </tr>
             `
@@ -48,5 +47,37 @@ function categoriaSeleccionada(idCategoria){
         sessionStorage.setItem('Categoria Seleccionada', JSON.stringify(res.data));
     }).catch(err=>{
         console.log(err);
+    })
+}
+
+function eliminarCategoria(idCategoria){
+    
+    Swal.fire({
+        title: 'Estas Seguro?',
+        text: "No podras revertir los cambios",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#44bae6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, estoy seguro!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axios({
+                url: 'http://localhost/Backend-Portal-Delivery/api/categorias.php?id='+idCategoria,
+                method: 'delete',
+                responseType: 'json'
+            }).then((res) =>{
+               llenarTablaCategories();
+
+               Swal.fire({
+                icon: 'success',
+                title: 'Eliminada!',
+                text: 'La categoria ha sido eliminada',
+                confirmButtonColor: '#44bae6' 
+                })
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
     })
 }

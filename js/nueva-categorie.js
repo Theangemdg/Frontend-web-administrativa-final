@@ -11,18 +11,7 @@ function nuevaCategoria(){
     let txtIcono = document.getElementById('descripcion').value;
 
 
-    var campos = {
-        nombreCategoria: false,
-        icono: false,
-    }
-
-    if(txtnombreCategoria && txtIcono !== " "){
-        campos.nombreCategoria = true;
-        campos.icono = true;
-    }
-
-
-    if(campos.nombreCategoria && campos.icono === true){
+    if(txtnombreCategoria && txtIcono){
         axios({
             url: 'http://localhost/Backend-Portal-Delivery/api/categorias.php',
             method: 'get',
@@ -41,16 +30,22 @@ function nuevaCategoria(){
                 responseType: 'json',
                 data:categoria
             }).then((res) =>{
-                window.location  = "../html/adminCategories.html"
+                
                 console.log(res);
             }).catch(err=>{
                 console.log(err);
             })
+            window.location  = "../html/adminCategories.html"
         }).catch(err=>{
             console.log(err);
         })
     }else{
-        alert("Es necesario rellenar todos los campos")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'debes rellenar todos los campos',
+            confirmButtonColor: '#44bae6' 
+        })
     }
 }
 
