@@ -1,3 +1,11 @@
+var clienteActivo = JSON.parse(sessionStorage.getItem('Usuario activo'));
+document.getElementById('userDropdown').innerHTML = "";
+document.getElementById('userDropdown').innerHTML = 
+`
+<span class="mr-2 d-none d-lg-inline text-gray-600 small">${clienteActivo.nombre}</span>
+<img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+`
+
 var categoriaActiva = JSON.parse(sessionStorage.getItem('Categoria Seleccionada'));
 document.getElementById('nombre').value = categoriaActiva.nombreCategoria;
 document.getElementById('descripcion').value = categoriaActiva.icono;
@@ -23,17 +31,7 @@ function editarCategoria(){
     let txtnombreCategoria = document.getElementById('nombre').value;
     let txticono = document.getElementById('descripcion').value;
 
-    var campos = {
-        nombreCategoria: false,
-        icono: false
-    }
-
-    if(txtnombreCategoria && txticono !== " "){
-        campos.nombreCategoria = true;
-        campos.icono = true;
-    }
-
-    if(campos.nombreCategoria && campos.icono === true){
+    if(txtnombreCategoria && txticono){
         axios({
             url: 'http://localhost/Backend-Portal-Delivery/api/empresas.php?id='+(categoriaActiva.id-1),
             method: 'get',
@@ -68,9 +66,17 @@ function editarCategoria(){
             }).catch(err=>{
                 console.log(err);
             })
+            window.location  = "../html/adminCategories.html"
             
         }).catch(err=>{
             console.log(err);
+        })
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'debes rellenar todos los campos',
+            confirmButtonColor: '#44bae6' 
         })
     }
     

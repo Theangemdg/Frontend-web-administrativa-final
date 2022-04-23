@@ -12,6 +12,7 @@
     <title>Portal-admin</title>
 
     <!-- Custom fonts for this template-->
+    <script src="https://kit.fontawesome.com/a58c9592f7.js" crossorigin="anonymous"></script>
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -144,6 +145,8 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <a href="../html/editarCategoria.html" class="border-0 fa-solid fa-arrow-left-long" style="font-size: 35px;
+                        color: #5a5c69;"></a>
                         <h1 class="h3 mb-1 text-gray-800">Administrar Empresas</h1>
                         <a href="../html/newEmpresa.html" class=" btn btn-info shadow-sm">Nueva Empresa</a>
                     </div>
@@ -159,8 +162,8 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Imagen</th>
-                                            <th>Nombre de la categoria</th>
+                                            <th>logo</th>
+                                            <th>Nombre de la empresa</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -170,8 +173,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Imagen</th>
-                                            <th>Nombre de la categoria</th>
+                                            <th>logo</th>
+                                            <th>Nombre de la empresa</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </tfoot>
@@ -235,8 +238,9 @@
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/controlador-categories.js"></script>
+    <script src="../js/controlador-empresas.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
