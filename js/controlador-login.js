@@ -1,22 +1,31 @@
 function validarCampo(){
     let txtcorreo = document.getElementById('exampleInputEmail').value;
-    let txtcontraseña = document.getElementById('exampleInputPassword').value;
+    let txtcontrasena = document.getElementById('exampleInputPassword').value;
 
-    console.log(txtcorreo)
-    console.log(txtcontraseña)
-    var campos = {
-        correo: false,
-        contraseña: false
-    }
+    if(txtcorreo && txtcontrasena){
 
-    if(txtcorreo && txtcontraseña !== " "){
-        campos.correo = true;
-        campos.contraseña = true;
-    }
-
-    if(campos.correo && campos.contraseña === true){
-        window.location  = "index.html"
+        axios({
+            url: 'http://localhost/Backend-Portal-Delivery/api/administradores.php',
+            method: 'get',
+            responseType: 'json'
+        }).then((res) =>{
+            console.log(res.data);
+            for (let i = 0; i<res.data.length; i++) {
+                if (res.data[i].correo==txtcorreo && res.data[i].password==txtcontrasena ) { 
+                    sessionStorage.setItem('Usuario activo', JSON.stringify(res.data[i]));
+                    window.location  = "../html/index.html"
+                    break;
+                }
+            }
+        }).catch(err=>{
+            console.log(err);
+        })
     }else{
-        alert("es necesario rellenar todos los campos")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'debes rellenar todos los campos',
+            confirmButtonColor: '#44bae6' 
+        })
     }
 }
