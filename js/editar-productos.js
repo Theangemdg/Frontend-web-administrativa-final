@@ -27,12 +27,13 @@ function editarProducto(){
     let txtimagen = document.getElementById('imagen').value;
     let txtprecio = document.getElementById('precio').value;
     let txtdescripcion = document.getElementById('descripcion').value;
+    
 
     if(txtnombreProducto && txtimagen && txtprecio && txtdescripcion){
         let producto = {
             nombreProducto:  txtnombreProducto,
             imgProducto: txtimagen,
-            precio: txtprecio,
+            precio: parseInt(txtprecio),
             descripcion: txtdescripcion,
         }
         axios({

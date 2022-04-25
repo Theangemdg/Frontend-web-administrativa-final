@@ -48,7 +48,7 @@ function editarEmpresa(){
                 productos.push(
                     {
                         nombreProducto: res.data.productos[i].nombreProducto,
-                        imgProducto: res.data.productos[i].imagenProducto,
+                        imgProducto: res.data.productos[i].imgProducto,
                         descripcion: res.data.productos[i].descripcion,
                         precio: res.data.productos[i].precio
                     }
