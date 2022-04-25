@@ -41,6 +41,7 @@ function editarCategoria(){
             for(let i=0; i<res.data.empresas.length; i++){
                 empresas.push(
                     {
+                        id: res.data.empresas[i].id,
                         nombreEmpresa: res.data.empresas[i].nombreEmpresa,
                         imagen: res.data.empresas[i].imagen,
                         logo: res.data.empresas[i].logo,
